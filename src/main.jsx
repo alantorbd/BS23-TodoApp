@@ -4,9 +4,12 @@ import "./index.css";
 
 import { RouterProvider } from "react-router";
 import router from "./routes/MainRouter.jsx";
+import TaskContextProvider from "./contexts/taskContext.jsx";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <RouterProvider router={router} />
+    <TaskContextProvider>
+      <RouterProvider router={router} />
+    </TaskContextProvider>
   </StrictMode>,
 );

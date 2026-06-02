@@ -8,7 +8,9 @@ export default function NavBar() {
       <ul className=" text-x flex w-full  gap-1 items-center ">
         <NavLink
           className={({ isActive }) =>
-            isActive ? navLinkCss + "bg-green-800" : navLinkCss + "bg-green-700"
+            isActive
+              ? navLinkCss + "bg-green-800 border-b-3 border-green-200"
+              : navLinkCss + "bg-green-700"
           }
           to={"/"}
         >
@@ -18,7 +20,9 @@ export default function NavBar() {
         <NavLink
           to={"stats"}
           className={({ isActive }) =>
-            isActive ? navLinkCss + "bg-green-800" : navLinkCss + "bg-green-700"
+            isActive
+              ? navLinkCss + "bg-green-800 border-b-3 border-green-200"
+              : navLinkCss + "bg-green-700"
           }
         >
           <li>Stats</li>
