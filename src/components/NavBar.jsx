@@ -1,33 +1,30 @@
 import { NavLink } from "react-router";
+import cn from "../utils/cnFunction";
 
 export default function NavBar() {
-  let navLinkCss =
-    "p-1 text-green-200 hover:bg-green-800  w-1/2 text-center   ";
   return (
     <div className="mx-5">
       <ul className=" text-x flex w-full  gap-1 items-center ">
-        <NavLink
-          className={({ isActive }) =>
-            isActive
-              ? navLinkCss + "bg-green-800 border-b-3 border-green-200"
-              : navLinkCss + "bg-green-700"
-          }
-          to={"/"}
-        >
-          <li>Home</li>
-        </NavLink>
-
-        <NavLink
-          to={"stats"}
-          className={({ isActive }) =>
-            isActive
-              ? navLinkCss + "bg-green-800 border-b-3 border-green-200"
-              : navLinkCss + "bg-green-700"
-          }
-        >
-          <li>Stats</li>
-        </NavLink>
+        <NavButton to={"/"}>Home</NavButton>
+        <NavButton to={"/stats"}>Stats</NavButton>
       </ul>
     </div>
   );
 }
+
+const NavButton = ({ to, children }) => {
+  return (
+    <NavLink
+      className={({ isActive }) =>
+        cn(
+          "p-1 text-green-200 hover:bg-green-800  w-1/2 text-center   ",
+          isActive && "bg-green-800 border-b-3 border-green-200",
+          !isActive && "bg-green-700",
+        )
+      }
+      to={to}
+    >
+      <li>{children}</li>
+    </NavLink>
+  );
+};

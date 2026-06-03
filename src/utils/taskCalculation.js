@@ -13,9 +13,11 @@ export default function taskCalculationResult(tasks) {
     0,
   );
   const totalPendingTask = totalTask - totalCompletedTask;
-  const completionPercentage = ((totalCompletedTask / totalTask) * 100).toFixed(
-    2,
-  );
+  let completionPercentage = 0;
+  if (totalTask !== 0) {
+    completionPercentage = ((totalCompletedTask / totalTask) * 100).toFixed(0);
+  }
+
   return {
     totalTask,
     totalCompletedTask,

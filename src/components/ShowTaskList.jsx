@@ -1,6 +1,7 @@
 import { useContext, useRef, useState } from "react";
 import { taskContext } from "../contexts/taskContext";
 import Modal from "./Modal";
+import Button from "./Button";
 
 export default function ShowTaskList() {
   const [editTask, setEditTask] = useState(null);
@@ -38,19 +39,20 @@ export default function ShowTaskList() {
                 >
                   {task.title}{" "}
                 </p>
-                <button
-                  className={`cursor-pointer bg-green-700 px-10 py-1 hover:bg-green-600`}
+
+                <Button
+                  className={` bg-green-700  hover:bg-green-600 py-1`}
                   hidden={task.isComplete ? true : false}
                   onClick={() => handleEditClick(task)}
                 >
                   Edit
-                </button>
-                <button
-                  className="cursor-pointer px-10 py-1 bg-red-700 hover:bg-red-600"
+                </Button>
+                <Button
+                  className="py-1 bg-red-700 hover:bg-red-600"
                   onClick={() => removeTask(task.id)}
                 >
                   Delete
-                </button>
+                </Button>
               </div>
             );
           })}

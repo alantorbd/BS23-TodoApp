@@ -1,6 +1,7 @@
 import { useRef } from "react";
 import Modal from "../components/Modal";
 import ShowTaskList from "../components/ShowTaskList";
+import Button from "../components/Button";
 
 export default function Home() {
   const modal = useRef();
@@ -8,12 +9,14 @@ export default function Home() {
     <>
       <Modal modal={modal} />
       <div className="px-5 pt-2 w-full flex flex-col">
-        <button
-          className="text-right bg-gray-950 text-green-200 self-end px-5 py-2 hover:bg-gray-900 cursor-pointer"
+        <Button
+          className={
+            "text-right bg-gray-950 text-green-200 self-end  hover:bg-gray-900"
+          }
           onClick={() => modal.current?.showModal()}
         >
           + Add New Task
-        </button>
+        </Button>
         <ShowTaskList />
       </div>
     </>

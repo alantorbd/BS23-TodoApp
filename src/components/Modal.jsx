@@ -7,30 +7,28 @@ export default function Modal({ modal, editTask, setEditTask }) {
 
   useEffect(() => {
     if (editTask) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setEnteredTitle(editTask.title);
     } else {
       setEnteredTitle("");
     }
   }, [editTask]);
 
-  function handleAddTask() {
+  function handleAddOrUpdateTask() {
     if (enteredTitle.trim() === "") {
       return;
     }
-    addTask(enteredTitle.trim());
+    if (editTask) {
+      updateTitle(editTask.id, enteredTitle.trim());
+      setEditTask(null);
+    } else {
+      addTask(enteredTitle.trim());
+    }
+
     setEnteredTitle("");
     modal.current.close();
   }
 
-  function handleUpdateTask() {
-    if (enteredTitle.trim() === "") {
-      return;
-    }
-    updateTitle(editTask.id, enteredTitle.trim());
-    setEnteredTitle("");
-    setEditTask(null);
-    modal.current.close();
-  }
   return (
     <dialog
       ref={modal}
@@ -42,6 +40,13 @@ export default function Modal({ modal, editTask, setEditTask }) {
       <input
         type="text"
         value={enteredTitle}
+        onKeyDown={(e) => {
+          if (e.key === "Enter") {
+            e.preventDefault();
+            handleAddOrUpdateTask();
+            // editTask ? handleUpdateTask() : handleAddTask();
+          }
+        }}
         onChange={(e) => setEnteredTitle(e.target.value)}
         className="border text-xl font-medium p-2 mb-4 border-green-950 placeholder:text-green-950 w-full focus:outline-none focus:ring-0 focus:border focus:border-green-300"
         placeholder="Enter your task..."
@@ -49,7 +54,7 @@ export default function Modal({ modal, editTask, setEditTask }) {
       <form method="dialog" className="flex gap-1 justify-end items-center">
         <button
           type="button"
-          onClick={editTask ? handleUpdateTask : handleAddTask}
+          onClick={handleAddOrUpdateTask}
           className="bg-gray-900 font-semibold text-white px-5 py-1 rounded cursor-pointer"
         >
           {editTask ? "Edit" : "Add"}
