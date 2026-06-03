@@ -11,7 +11,7 @@ export default function Home() {
       <div className="px-5 pt-2 w-full flex flex-col">
         <Button
           className={
-            "text-right bg-gray-950 text-green-200 self-end  hover:bg-gray-900"
+            "text-right dark:bg-green-950 bg-gray-950 text-green-200 self-end  hover:bg-gray-900"
           }
           onClick={() => modal.current?.showModal()}
         >

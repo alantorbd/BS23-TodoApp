@@ -21,7 +21,7 @@ export default function ShowAllTaskStats() {
           {totalTask}
         </p>
       </div>
-      <div className="flex justify-evenly items-center mt-2 pb-10 p-4">
+      <div className="flex flex-wrap gap-2 md:gap-2 justify-evenly items-center mt-2 pb-10 p-4">
         <ResultCard
           title="Completed"
           result={totalCompletedTask}
@@ -31,6 +31,7 @@ export default function ShowAllTaskStats() {
           title="Pending"
           result={totalPendingTask}
           resultType="Task"
+          resultColor="text-red-800"
         />
         <ResultCard
           title="Progress"

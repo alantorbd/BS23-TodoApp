@@ -32,7 +32,7 @@ export default function Modal({ modal, editTask, setEditTask }) {
   return (
     <dialog
       ref={modal}
-      className=" bg-green-600  rounded-md backdrop:bg-black/50 m-auto w-xl  p-10"
+      className=" bg-green-600 dark:bg-gray-600 rounded-md backdrop:bg-black/50 m-auto w-xl  p-10"
     >
       <h2 className="text-2xl font-semibold text-gray-950 text-center mb-3 py-2">
         {editTask ? "Edit Task" : "Add New Task"}

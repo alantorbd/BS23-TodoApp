@@ -24,7 +24,7 @@ export default function ShowTaskList() {
           {tasks.map((task) => {
             return (
               <div
-                className="flex gap-5 border-b border-dashed py-2 items-center border-green-300"
+                className="flex flex-wrap gap-5 border-b border-dashed py-2 items-center border-green-300"
                 key={task.id}
               >
                 <input
@@ -35,7 +35,7 @@ export default function ShowTaskList() {
                   onClick={() => updateComplete(task.id)}
                 />
                 <p
-                  className={`grow ${task.isComplete ? "line-through" : ""} text-green-200 font-medium text-xl`}
+                  className={`grow basis-25 ${task.isComplete ? "line-through" : ""} text-green-200 font-medium text-xl`}
                 >
                   {task.title}{" "}
                 </p>
