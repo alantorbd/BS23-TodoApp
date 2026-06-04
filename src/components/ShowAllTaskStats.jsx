@@ -6,7 +6,7 @@ import StateCard from "./StateCard";
 export default function ShowAllTaskStats() {
   const { tasks } = useTask();
   const [pendingTask, completedTask, cardInfo] = taskCalculation(tasks);
-
+  const totalTask = completedTask + pendingTask;
   return (
     <>
       <div className="mt-2 ">
@@ -15,7 +15,7 @@ export default function ShowAllTaskStats() {
             Total Number of Task
           </h4>
           <p className="bg-green-700 px-10 py-2 text-2xl font-bold">
-            {pendingTask + completedTask}
+            {totalTask}
           </p>
         </div>
         <div className="flex flex-wrap gap-2 md:gap-2 justify-evenly items-center mt-2 pb-10 p-4">
@@ -25,12 +25,15 @@ export default function ShowAllTaskStats() {
                 title={card.title}
                 result={card.value}
                 resultType={card.isProgress ? "%" : "Task"}
+                resultColor={card.title === "Pending" && "text-red-600"}
               />
             );
           })}
         </div>
       </div>
-      <StateChart compltedTask={completedTask} pendingTask={pendingTask} />
+      {totalTask > 0 && (
+        <StateChart compltedTask={completedTask} pendingTask={pendingTask} />
+      )}
     </>
   );
 }
