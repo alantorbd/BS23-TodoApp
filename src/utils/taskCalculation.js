@@ -1,12 +1,4 @@
 export default function taskCalculation(tasks) {
-  if (!tasks) {
-    return {
-      totalTask: 0,
-      totalCompletedTask: 0,
-      totalPendingTask: 0,
-      completionPercentage: 0.0,
-    };
-  }
   const totalTask = tasks.length;
   const totalCompletedTask = tasks.reduce(
     (acc, task) => (task.isComplete ? acc + 1 : acc),
@@ -18,10 +10,32 @@ export default function taskCalculation(tasks) {
     completionPercentage = ((totalCompletedTask / totalTask) * 100).toFixed(0);
   }
 
-  return {
-    totalTask,
-    totalCompletedTask,
+  // return {
+  //   totalTask,
+  //   totalCompletedTask,
+  //   totalPendingTask,
+  //   completionPercentage,
+  // };
+
+  return [
     totalPendingTask,
-    completionPercentage,
-  };
+    totalCompletedTask,
+    [
+      {
+        title: "Completed",
+        value: totalCompletedTask,
+        isProgress: false,
+      },
+      {
+        title: "Pending",
+        value: totalPendingTask,
+        isProgress: false,
+      },
+      {
+        title: "Progress",
+        value: completionPercentage,
+        isProgress: true,
+      },
+    ],
+  ];
 }

@@ -1,6 +1,6 @@
 import cn from "../utils/cn";
 
-export default function ResultCard(props) {
+export default function StateCard(props) {
   return (
     <div className="flex grow flex-col">
       <div

@@ -1,16 +1,12 @@
-import taskCalculationResult from "../utils/taskCalculation";
-import ResultCard from "./StateCard";
+import taskCalculation from "../utils/taskCalculation";
 import useTask from "../hooks/useTask";
 import StateChart from "./StateChart";
+import StateCard from "./StateCard";
 
 export default function ShowAllTaskStats() {
   const { tasks } = useTask();
-  const {
-    totalTask,
-    totalCompletedTask,
-    totalPendingTask,
-    completionPercentage,
-  } = taskCalculationResult(tasks);
+  const [pendingTask, completedTask, cardInfo] = taskCalculation(tasks);
+
   return (
     <>
       <div className="mt-2 ">
@@ -19,33 +15,22 @@ export default function ShowAllTaskStats() {
             Total Number of Task
           </h4>
           <p className="bg-green-700 px-10 py-2 text-2xl font-bold">
-            {totalTask}
+            {pendingTask + completedTask}
           </p>
         </div>
         <div className="flex flex-wrap gap-2 md:gap-2 justify-evenly items-center mt-2 pb-10 p-4">
-          <ResultCard
-            title="Completed"
-            result={totalCompletedTask}
-            resultType="Task"
-          />
-          <ResultCard
-            title="Pending"
-            result={totalPendingTask}
-            resultType="Task"
-            resultColor="text-red-800"
-          />
-          <ResultCard
-            title="Progress"
-            result={completionPercentage}
-            showProgress={true}
-            resultType="%"
-          />
+          {cardInfo.map((card) => {
+            return (
+              <StateCard
+                title={card.title}
+                result={card.value}
+                resultType={card.isProgress ? "%" : "Task"}
+              />
+            );
+          })}
         </div>
       </div>
-      <StateChart
-        compltedTask={totalCompletedTask}
-        pendingTask={totalPendingTask}
-      />
+      <StateChart compltedTask={completedTask} pendingTask={pendingTask} />
     </>
   );
 }
