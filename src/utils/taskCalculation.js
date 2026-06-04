@@ -1,4 +1,4 @@
-export default function taskCalculationResult(tasks) {
+export default function taskCalculation(tasks) {
   if (!tasks) {
     return {
       totalTask: 0,

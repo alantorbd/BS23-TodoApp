@@ -1,5 +1,5 @@
 import { NavLink } from "react-router";
-import cn from "../utils/cnFunction";
+import cn from "../utils/cn";
 
 export default function NavBar() {
   return (

@@ -1,20 +1,14 @@
-import { useContext } from "react";
-import { themeContext } from "../contexts/ThemeContext";
-
-export default function ToggleButton() {
-  const { theme, changeTheme } = useContext(themeContext);
-  const isDarkMode = theme === "dark";
-
+export default function ToggleButton({ isDarkMode, ...props }) {
   return (
     <button
-      onClick={changeTheme}
+      {...props}
       className={`relative inline-flex h-8 w-16 items-center rounded-full transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800 ${
         isDarkMode ? "bg-blue-600" : "bg-gray-300"
       }`}
       aria-label="Toggle Dark Mode"
     >
       <span
-        className={`inline-block h-6 w-6 transform rounded-full bg-white transition-transform duration-300 flex items-center justify-center shadow-sm ${
+        className={` h-6 w-6 transform rounded-full bg-white transition-transform duration-300 flex items-center justify-center shadow-sm ${
           isDarkMode ? "translate-x-9" : "translate-x-1"
         }`}
       >
