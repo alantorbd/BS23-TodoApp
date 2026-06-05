@@ -5,8 +5,8 @@ import StateCard from "./StateCard";
 
 export default function ShowAllTaskStats() {
   const { tasks } = useTask();
-  const [pendingTask, completedTask, cardInfo] = taskCalculation(tasks);
-  const totalTask = completedTask + pendingTask;
+  const { totalTask, pendingTask, completedTask, cardInfo } =
+    taskCalculation(tasks);
   return (
     <>
       <div className="mt-2 ">
@@ -22,10 +22,11 @@ export default function ShowAllTaskStats() {
           {cardInfo.map((card) => {
             return (
               <StateCard
+                key={card.title}
                 title={card.title}
-                result={card.value}
-                resultType={card.isProgress ? "%" : "Task"}
-                resultColor={card.title === "Pending" && "text-red-600"}
+                value={card.value}
+                suffix={card.isProgress ? "%" : "Task"}
+                valueClassName={card.title === "Pending" && "text-red-600"}
               />
             );
           })}

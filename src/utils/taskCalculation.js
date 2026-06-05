@@ -10,17 +10,11 @@ export default function taskCalculation(tasks) {
     completionPercentage = ((totalCompletedTask / totalTask) * 100).toFixed(0);
   }
 
-  // return {
-  //   totalTask,
-  //   totalCompletedTask,
-  //   totalPendingTask,
-  //   completionPercentage,
-  // };
-
-  return [
-    totalPendingTask,
-    totalCompletedTask,
-    [
+  return {
+    pendingTask: totalPendingTask,
+    completedTask: totalCompletedTask,
+    totalTask: totalTask,
+    cardInfo: [
       {
         title: "Completed",
         value: totalCompletedTask,
@@ -37,5 +31,5 @@ export default function taskCalculation(tasks) {
         isProgress: true,
       },
     ],
-  ];
+  };
 }

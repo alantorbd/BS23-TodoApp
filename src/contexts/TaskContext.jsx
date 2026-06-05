@@ -1,4 +1,5 @@
 import { createContext, useState } from "react";
+import data from "../../data";
 // eslint-disable-next-line react-refresh/only-export-components
 export const taskContext = createContext({
   tasks: null,
@@ -9,21 +10,10 @@ export const taskContext = createContext({
 });
 
 export default function TaskContextProvider({ children }) {
-  const [tasks, setTasks] = useState([
-    {
-      id: 1,
-      title: "This is  title",
-      isComplete: false,
-    },
-    {
-      id: 2,
-      title: "This is second title",
-      isComplete: true,
-    },
-  ]);
+  const [tasks, setTasks] = useState(data);
 
   function addTask(title) {
-    const id = Math.random();
+    const id = crypto.randomUUID();
     const newTask = { id, title, isComplete: false };
     setTasks((prevTasks) => [newTask, ...prevTasks]);
   }

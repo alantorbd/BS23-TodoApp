@@ -15,19 +15,19 @@ export default function StateCard(props) {
         <p
           className={cn(
             "text-green-100  text-center font-extrabold text-4xl",
-            props.resultColor,
+            props.valueClassName,
           )}
         >
-          {props.result}{" "}
+          {props.value}{" "}
           <span className="text-gray-900 text-lg font-medium">
-            {props.resultType}
+            {props.suffix}
           </span>
         </p>
       </div>
       {props.showProgress && (
         <progress
           max={100}
-          value={props.result}
+          value={props.value}
           className=" w-full h-4 mt-2  overflow-hidden bg-emerald-900
          [&::-webkit-progress-bar]:bg-emerald-800 [&::-webkit-progress-value]:rounded-full
          [&::-webkit-progress-value]:bg-green-200 

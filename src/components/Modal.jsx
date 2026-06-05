@@ -1,4 +1,5 @@
 import cn from "../utils/cn";
+import Button from "./Button";
 
 export default function Modal({ modal, className, children }) {
   return (
@@ -13,3 +14,24 @@ export default function Modal({ modal, className, children }) {
     </dialog>
   );
 }
+
+const Footer = (props) => {
+  return (
+    <div>
+      {props.showSubmitBtn && (
+        <Button
+          title={props.submitBtntitle}
+          className={props.submitBtnClassName}
+          onClick={props.onSubmit}
+        />
+      )}
+      {props.showCancelBtn && (
+        <Button
+          title={props.submitBtntitle}
+          className={props.submitBtnClassName}
+          onClick={props.onSubmit}
+        />
+      )}
+    </div>
+  );
+};
