@@ -3,33 +3,45 @@ import { useRef, useState } from "react";
 import InputModal from "./InputModal";
 import Button from "./Button";
 import useTask from "../hooks/useTask";
-import ConfirmationModal from "./ConfirmationModal";
+import Modal from "./Modal";
 
 export default function ShowTaskList() {
   const [editTask, setEditTask] = useState(null);
-  const [taskToDelete, setTaskToDelete] = useState(null);
+  const [confirmResolver, setConfirmResolver] = useState(null);
   const { tasks, removeTask, updateComplete } = useTask();
   const modalRef = useRef();
-  const confirmationModalRef = useRef();
 
   function handleEditClick(task) {
     setEditTask(task);
     modalRef.current.showModal();
   }
 
-  function handleDeleteClick(task) {
-    setTaskToDelete(task);
-    confirmationModalRef.current.showModal();
+  async function handleDeleteClick(taskID) {
+    const isCofirmed = await new Promise((resulve) =>
+      setConfirmResolver(() => resulve),
+    );
+    if (isCofirmed) {
+      removeTask(taskID);
+    }
+    setConfirmResolver(null);
   }
 
   return (
     <>
-      <ConfirmationModal
-        modal={confirmationModalRef}
-        removeTask={removeTask}
-        setTaskToDelete={setTaskToDelete}
-        taskToDelete={taskToDelete}
-      />
+      {confirmResolver && (
+        <Modal
+          showCancelBtn={true}
+          cancelBtnTitle="Cancel"
+          showSubmitBtn={true}
+          submitBtnTitle="Delete"
+          onCancel={() => confirmResolver(false)}
+          onSubmit={() => confirmResolver(true)}
+        >
+          <p className=" text-xl mb-10 text-gray-950">
+            Are you sure want to permanently remove this items?
+          </p>
+        </Modal>
+      )}
       <InputModal
         modal={modalRef}
         editTask={editTask}
@@ -75,7 +87,7 @@ export default function ShowTaskList() {
 
                   <Button
                     className="py-1 bg-red-700 hover:bg-red-600"
-                    onClick={() => handleDeleteClick(task)}
+                    onClick={() => handleDeleteClick(task.id)}
                     title="Delete"
                   />
                 </div>

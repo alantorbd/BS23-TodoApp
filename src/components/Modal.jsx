@@ -1,35 +1,38 @@
 import cn from "../utils/cn";
 import Button from "./Button";
 
-export default function Modal({ modal, className, children }) {
+export default function Modal(props) {
   return (
-    <dialog
-      ref={modal}
-      className={cn(
-        " bg-green-600 rounded-md backdrop:bg-black/50 m-auto w-xl  p-10",
-        className,
-      )}
-    >
-      {children}
-    </dialog>
+    <div className="fixed inset-0 z-100 flex justify-center items-center  bg-green-950/0  rounded-md backdrop-blur-sm ">
+      <div className={cn("bg-green-700 p-10", props.className)}>
+        {props.children}
+        <Footer props={props} />
+      </div>
+    </div>
   );
 }
 
-const Footer = (props) => {
+const Footer = ({ props }) => {
   return (
-    <div>
+    <div className="flex gap-2 flex-wrap">
       {props.showSubmitBtn && (
         <Button
-          title={props.submitBtntitle}
-          className={props.submitBtnClassName}
+          title={props.submitBtnTitle}
+          className={cn(
+            "bg-red-700  text-green-200  hover:bg-red-600 px-8",
+            props.submitBtnClassName,
+          )}
           onClick={props.onSubmit}
         />
       )}
       {props.showCancelBtn && (
         <Button
-          title={props.submitBtntitle}
-          className={props.submitBtnClassName}
-          onClick={props.onSubmit}
+          title={props.cancelBtnTitle}
+          className={cn(
+            "bg-gray-950 hover:bg-gray-900 text-green-200 ",
+            props.cancelBtnClassName,
+          )}
+          onClick={props.onCancel}
         />
       )}
     </div>
