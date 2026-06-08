@@ -1,7 +1,7 @@
 import { forwardRef } from "react";
 import Input from "./Input";
 
-const FormElement = forwardRef(
+const InputField = forwardRef(
   (
     { labelTitle, id, placeholder, type, isError, errorMessage, ...props },
     ref,
@@ -30,4 +30,4 @@ const FormElement = forwardRef(
   },
 );
 
-export default FormElement;
+export default InputField;

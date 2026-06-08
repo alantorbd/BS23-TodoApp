@@ -1,7 +1,7 @@
 import { useForm } from "react-hook-form";
 import Button from "./Button";
 import { zodResolver } from "@hookform/resolvers/zod";
-import FormElement from "./FormElement";
+import InputField from "./InputField";
 import loginSchema from "../schemas/loginSchema";
 import { useNavigate } from "react-router";
 
@@ -25,7 +25,7 @@ export default function LogInForm() {
         </h2>
         <div className=" border-green-800 border-b-2 border-dashed w-full mb-3" />
         <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-2">
-          <FormElement
+          <InputField
             {...register("name")}
             id="name"
             placeholder="eg: Mrs Khan"
@@ -34,7 +34,7 @@ export default function LogInForm() {
             isError={errors.name}
             errorMessage={errors.name?.message}
           />
-          <FormElement
+          <InputField
             {...register("email")}
             id="email"
             placeholder="eg: abc@gmail.com"
@@ -44,7 +44,7 @@ export default function LogInForm() {
             errorMessage={errors.email?.message}
           />
 
-          <FormElement
+          <InputField
             {...register("mobile")}
             id="mobile"
             placeholder="eg: 01712345678"
@@ -54,7 +54,7 @@ export default function LogInForm() {
             errorMessage={errors.mobile?.message}
           />
 
-          <FormElement
+          <InputField
             {...register("password")}
             id="password"
             placeholder="eg: password@123"
@@ -64,7 +64,7 @@ export default function LogInForm() {
             errorMessage={errors.password?.message}
           />
 
-          <FormElement
+          <InputField
             {...register("confirmPassword")}
             id="confirmPassword"
             placeholder="eg: password@123"
