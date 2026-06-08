@@ -3,11 +3,12 @@ import MainLayout from "../layouts/MainLayout";
 import Home from "../pages/Home";
 import Stats from "../pages/Stats";
 import FeedBack404 from "../components/FeedBack404";
-import Registration from "../pages/Registration";
+
+import Login from "../pages/Login";
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Registration />,
+    element: <Login />,
     errorElement: <FeedBack404 />,
   },
 
@@ -26,26 +27,5 @@ const router = createBrowserRouter([
     ],
   },
 ]);
-// {
-//   path: "/home",
-//   element: <MainLayout />,
-//   errorElement: <FeedBack404 />,
-//   children: [
-//     {
-//       path: "/home",
-//       element: <Home />,
-//     },
-
-//     {
-//       path: "/stats",
-//       element: <Stats />,
-//     },
-//   ],
-// },
-// {
-//   path: "/",
-//   element: <Registration />,
-//   errorElement: <FeedBack404 />,
-// },
 
 export default router;

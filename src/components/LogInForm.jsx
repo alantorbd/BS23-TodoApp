@@ -1,7 +1,7 @@
 import { useForm } from "react-hook-form";
 import Button from "./Button";
 import { zodResolver } from "@hookform/resolvers/zod";
-import FormElement from "./FormElement";
+import InputField from "./InputField";
 import loginSchema from "../schemas/loginSchema";
 import { useNavigate } from "react-router";
 
@@ -25,8 +25,8 @@ export default function LogInForm() {
         </h2>
         <div className=" border-green-800 border-b-2 border-dashed w-full mb-3" />
         <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-2">
-          <FormElement
-            {...register("name")}
+          <InputField
+            register={register}
             id="name"
             placeholder="eg: Mrs Khan"
             type="text"
@@ -34,8 +34,8 @@ export default function LogInForm() {
             isError={errors.name}
             errorMessage={errors.name?.message}
           />
-          <FormElement
-            {...register("email")}
+          <InputField
+            register={register}
             id="email"
             placeholder="eg: abc@gmail.com"
             type="text"
@@ -44,8 +44,8 @@ export default function LogInForm() {
             errorMessage={errors.email?.message}
           />
 
-          <FormElement
-            {...register("mobile")}
+          <InputField
+            register={register}
             id="mobile"
             placeholder="eg: 01712345678"
             type="text"
@@ -54,8 +54,8 @@ export default function LogInForm() {
             errorMessage={errors.mobile?.message}
           />
 
-          <FormElement
-            {...register("password")}
+          <InputField
+            register={register}
             id="password"
             placeholder="eg: password@123"
             type="password"
@@ -64,8 +64,8 @@ export default function LogInForm() {
             errorMessage={errors.password?.message}
           />
 
-          <FormElement
-            {...register("confirmPassword")}
+          <InputField
+            register={register}
             id="confirmPassword"
             placeholder="eg: password@123"
             type="password"

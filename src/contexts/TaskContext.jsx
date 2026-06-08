@@ -1,5 +1,5 @@
 import { createContext, useState } from "react";
-import data from "../../data";
+
 // eslint-disable-next-line react-refresh/only-export-components
 export const taskContext = createContext({
   tasks: null,
@@ -9,6 +9,12 @@ export const taskContext = createContext({
   updateTitle: () => {},
 });
 
+const TaskData = localStorage.getItem("tasks") || "[]";
+let data = [];
+if (TaskData) {
+  data = JSON.parse(TaskData);
+}
+
 export default function TaskContextProvider({ children }) {
   const [tasks, setTasks] = useState(data);
 
@@ -16,19 +22,25 @@ export default function TaskContextProvider({ children }) {
     const id = crypto.randomUUID();
     const newTask = { id, title, isComplete: false };
     setTasks((prevTasks) => [newTask, ...prevTasks]);
+    saveToLocalStorage([newTask, ...tasks]);
   }
 
   function removeTask(id) {
     const updateTask = tasks.filter((task) => task.id !== id);
     setTasks(updateTask);
+    saveToLocalStorage(updateTask);
   }
 
   function updateTitle(id, newTitle) {
-    setTasks((prevTasks) =>
-      prevTasks.map((task) =>
+    setTasks((prevTasks) => {
+      const updatedTasks = prevTasks.map((task) =>
         task.id === id ? { ...task, title: newTitle } : task,
-      ),
-    );
+      );
+
+      saveToLocalStorage(updatedTasks);
+
+      return updatedTasks;
+    });
   }
 
   function updateComplete(id) {
@@ -47,4 +59,8 @@ export default function TaskContextProvider({ children }) {
       {children}
     </taskContext.Provider>
   );
+}
+
+function saveToLocalStorage(tasks) {
+  localStorage.setItem("tasks", JSON.stringify(tasks));
 }

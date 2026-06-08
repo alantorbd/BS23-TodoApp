@@ -2,13 +2,11 @@ import z from "zod";
 
 const loginSchema = z
   .object({
-    name: z.string().min(1, "Name is required").trim(),
+    name: z.string().trim().min(1, "Name is required"),
     email: z
       .string()
+      .trim()
       .nonempty("Email is required")
-      .includes("@", "Email do not contain @")
-      .regex(/.com/, "Email must be contain .com")
-      .regex(/.*gmail.*/, "Email support only gmail")
       .email("Email is incorrect")
 
       .trim(),

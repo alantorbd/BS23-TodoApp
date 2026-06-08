@@ -1,10 +1,10 @@
-import { forwardRef } from "react";
 import cn from "../utils/cn";
 
-const Input = forwardRef(({ className, ...props }, ref) => {
+const Input = ({ className, id, register, ...props }) => {
   return (
     <input
-      ref={ref}
+      {...register(id)}
+      id={id}
       className={cn(
         "mt-2 p-2 placeholder:text-green-700 placeholder:text-xl text-xl text-green-400  border border-green-500 outline-none focus:border-green-100 focus:border",
         className,
@@ -12,6 +12,6 @@ const Input = forwardRef(({ className, ...props }, ref) => {
       {...props}
     />
   );
-});
+};
 
 export default Input;
