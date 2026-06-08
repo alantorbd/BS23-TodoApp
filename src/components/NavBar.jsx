@@ -5,7 +5,7 @@ export default function NavBar() {
   return (
     <div className="mx-5">
       <ul className=" text-x flex w-full  gap-1 items-center ">
-        <NavButton to={"/"}>Home</NavButton>
+        <NavButton to={"/home"}>Home</NavButton>
         <NavButton to={"/stats"}>Stats</NavButton>
       </ul>
     </div>
