@@ -26,7 +26,7 @@ export default function LogInForm() {
         <div className=" border-green-800 border-b-2 border-dashed w-full mb-3" />
         <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-2">
           <InputField
-            {...register("name")}
+            register={register}
             id="name"
             placeholder="eg: Mrs Khan"
             type="text"
@@ -35,7 +35,7 @@ export default function LogInForm() {
             errorMessage={errors.name?.message}
           />
           <InputField
-            {...register("email")}
+            register={register}
             id="email"
             placeholder="eg: abc@gmail.com"
             type="text"
@@ -45,7 +45,7 @@ export default function LogInForm() {
           />
 
           <InputField
-            {...register("mobile")}
+            register={register}
             id="mobile"
             placeholder="eg: 01712345678"
             type="text"
@@ -55,7 +55,7 @@ export default function LogInForm() {
           />
 
           <InputField
-            {...register("password")}
+            register={register}
             id="password"
             placeholder="eg: password@123"
             type="password"
@@ -65,7 +65,7 @@ export default function LogInForm() {
           />
 
           <InputField
-            {...register("confirmPassword")}
+            register={register}
             id="confirmPassword"
             placeholder="eg: password@123"
             type="password"

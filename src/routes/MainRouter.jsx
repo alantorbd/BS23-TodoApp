@@ -27,26 +27,5 @@ const router = createBrowserRouter([
     ],
   },
 ]);
-// {
-//   path: "/home",
-//   element: <MainLayout />,
-//   errorElement: <FeedBack404 />,
-//   children: [
-//     {
-//       path: "/home",
-//       element: <Home />,
-//     },
-
-//     {
-//       path: "/stats",
-//       element: <Stats />,
-//     },
-//   ],
-// },
-// {
-//   path: "/",
-//   element: <Registration />,
-//   errorElement: <FeedBack404 />,
-// },
 
 export default router;
